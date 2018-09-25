@@ -10,5 +10,23 @@
   "license": "ISC",
   "dependencies": {
     "superagent": "^4.0.0-beta.5"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jacxk/discord-http.js.git"
+  },
+  "keywords": [
+    "discord",
+    "discord-api",
+    "discord-http",
+    "discord-http.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/Jacxk/discord-http.js/issues"
+  },
+  "homepage": "https://github.com/Jacxk/discord-http.js#readme"
 }
