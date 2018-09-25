@@ -83,7 +83,7 @@ class User {
     /**
      * @return {Promise<any>}
      */
-    getVerified() {
+    isVerified() {
         return new Promise(resolve => {
             this._Request.call('get', this._path).then(response => resolve(response.verified))
         });
