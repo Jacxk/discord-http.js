@@ -1,0 +1,14 @@
+{
+  "name": "discord-http.js",
+  "version": "0.0.1",
+  "description": "A discord http library with no websockets.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "author": "Jacxk",
+  "license": "ISC",
+  "dependencies": {
+    "superagent": "^4.0.0-beta.5"
+  }
+}
