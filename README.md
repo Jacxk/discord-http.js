@@ -25,6 +25,27 @@ async function getBotInfo() {
 getBotInfo().catch(console.error);
 ```
 
-[Example Code]()
+[Example Code](https://github.com/Jacxk/discord-http.js/blob/master/test/test.js)
 
-This is still work in progress.
+**Methods**
+
+Client:
+```
+Client#getUser()
+```
+
+User:
+```
+User#getJsonObject() - Get everything from bellow (object)
+User#isBot() - Check if the user is a bot (boolean)
+User#getId() - Get the id of the user (string)
+User#getUsername() - Get the username of the user (string)
+User#getDiscriminator() - Get the discriminator of the user (string)
+User#getTag() - Get the tag of the user (string)
+User#getAvatarHash() - Get the avatar hash of the user (string)
+User#getAvatarUrl() - Get the avatar's url of the user (string)
+User#isVerified() - Get if the user is verified (boolean)
+User#getEmail() - Get the email of the user (string)
+```
+
+This is still work in progress. More to come.
