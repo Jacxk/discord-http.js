@@ -1,6 +1,6 @@
 {
   "name": "discord-http.js",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "A discord http library with no websockets.",
   "main": "src/index.js",
   "scripts": {
@@ -24,7 +24,9 @@
     "discord",
     "discord-api",
     "discord-http",
-    "discord-http.js"
+    "discord-http-api",
+    "discord-http.js",
+    "standalone"
   ],
   "bugs": {
     "url": "https://github.com/Jacxk/discord-http.js/issues"

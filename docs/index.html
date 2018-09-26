@@ -44,6 +44,99 @@
                                     #getUser
                                 </a></li>
 
+                                <li><a
+                                        href='#clientgetguild'
+                                        class='regular pre-open'>
+                                    #getGuild
+                                </a></li>
+
+                            </ul>
+
+
+                        </div>
+
+                    </li>
+
+
+                    <li><a
+                            href='#guild'
+                            class=" toggle-sibling">
+                        Guild
+                        <span class='icon'>▸</span>
+                    </a>
+
+                        <div class='toggle-target display-none'>
+
+
+                            <ul class='list-reset py1-ul pl1'>
+                                <li class='h5'><span>Instance members</span></li>
+
+                                <li><a
+                                        href='#guildgetobject'
+                                        class='regular pre-open'>
+                                    #getObject
+                                </a></li>
+
+                                <li><a
+                                        href='#guildgetid'
+                                        class='regular pre-open'>
+                                    #getId
+                                </a></li>
+
+                                <li><a
+                                        href='#guildgetafktimeout'
+                                        class='regular pre-open'>
+                                    #getAfkTimeout
+                                </a></li>
+
+                                <li><a
+                                        href='#guildgetverificationlevel'
+                                        class='regular pre-open'>
+                                    #getVerificationLevel
+                                </a></li>
+
+                                <li><a
+                                        href='#guildgetexplicitcontentfilter'
+                                        class='regular pre-open'>
+                                    #getExplicitContentFilter
+                                </a></li>
+
+                                <li><a
+                                        href='#guildgetowner'
+                                        class='regular pre-open'>
+                                    #getOwner
+                                </a></li>
+
+                                <li><a
+                                        href='#guildgetmfalevel'
+                                        class='regular pre-open'>
+                                    #getMfaLevel
+                                </a></li>
+
+                                <li><a
+                                        href='#guildgeticonhash'
+                                        class='regular pre-open'>
+                                    #getIconHash
+                                </a></li>
+
+                                <li><a
+                                        href='#guildgeticonurl'
+                                        class='regular pre-open'>
+                                    #getIconUrl
+                                </a></li>
+
+                                <li><a
+                                        href='#guildgetname'
+                                        class='regular pre-open'>
+                                    #getName
+                                </a></li>
+
+                                <li><a
+                                        href='#guildgetregion'
+                                        class='regular pre-open'>
+                                    #getRegion
+                                </a></li>
+
                             </ul>
 
 
@@ -153,7 +246,7 @@
 
 
                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/Client.js#L6-L21'>
+                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Client.js#L7-L29'>
                     <span>src/api/Client.js</span>
                 </a>
 
@@ -181,7 +274,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/Client.js#L17-L19'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Client.js#L18-L20'>
                                     <span>src/api/Client.js</span>
                                 </a>
 
@@ -197,6 +290,550 @@
                             <div class='py1 quiet mt1 prose-big'>Returns</div>
                             <code>any</code>:
                             User
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='clientgetguild'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getGuild(id)</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Client.js#L26-L28'>
+                                    <span>src/api/Client.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get a specific guild from the client</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getGuild(id: any): any</div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Parameters</div>
+                            <div class='prose'>
+
+                                <div class='space-bottom0'>
+                                    <div>
+                                        <span class='code bold'>id</span> <code class='quiet'>(any)</code>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code>any</code>:
+                            Guild
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+            <div class='clearfix'>
+
+                <h3 class='fl m0' id='guild'>
+                    Guild
+                </h3>
+
+
+                <a class='fr fill-darken0 round round pad1x quiet h5'
+                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L7-L118'>
+                    <span>src/api/Guild.js</span>
+                </a>
+
+            </div>
+
+
+            <div class='pre p1 fill-light mt0'>Guild</div>
+
+
+            <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+            <div class="clearfix">
+
+                <div class='border-bottom' id='guildgetobject'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getObject()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L16-L23'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get all the guild data in one object.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getObject(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>></code>:
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='guildgetid'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getId()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L29-L31'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get the guild's ID.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getId(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>:
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='guildgetafktimeout'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getAfkTimeout()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L37-L39'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get the time until a user is set to AFK.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getAfkTimeout(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>></code>:
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='guildgetverificationlevel'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getVerificationLevel()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L49-L51'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get the guild's verification level.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getVerificationLevel(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>></code>:
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='guildgetexplicitcontentfilter'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getExplicitContentFilter()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L57-L59'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get the guild's explicit content filter.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getExplicitContentFilter(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>></code>:
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='guildgetowner'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getOwner()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L69-L71'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get the owner of the guild.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getOwner(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="#user">User</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="#user">User</a>></code>:
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='guildgetmfalevel'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getMfaLevel()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L77-L79'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get the guild's Multi-factor authentication level.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getMfaLevel(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>></code>:
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='guildgeticonhash'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getIconHash()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L85-L87'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get guild's icon hash.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getIconHash(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>:
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='guildgeticonurl'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getIconUrl()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L93-L97'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get guild's icon url.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getIconUrl(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>:
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='guildgetname'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getName()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L103-L105'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get guild's name.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getName(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>:
+
+
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class='border-bottom' id='guildgetregion'>
+                    <div class="clearfix small pointer toggle-sibling">
+                        <div class="py1 contain">
+                            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+                            <span class='code strong strong truncate'>getRegion()</span>
+                        </div>
+                    </div>
+                    <div class="clearfix display-none toggle-target">
+                        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+                            <div class='clearfix'>
+
+
+                                <a class='fr fill-darken0 round round pad1x quiet h5'
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/Guild.js#L115-L117'>
+                                    <span>src/api/Guild.js</span>
+                                </a>
+
+                            </div>
+
+
+                            <p>Get guild's region.</p>
+
+
+                            <div class='pre p1 fill-light mt0'>getRegion(): <a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>
+                            </div>
+
+
+                            <div class='py1 quiet mt1 prose-big'>Returns</div>
+                            <code><a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a
+                                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>:
 
 
                         </section>
@@ -221,7 +858,7 @@
 
 
                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L6-L113'>
+                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L6-L100'>
                     <span>src/api/User.js</span>
                 </a>
 
@@ -249,7 +886,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L17-L21'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L16-L23'>
                                     <span>src/api/User.js</span>
                                 </a>
 
@@ -291,7 +928,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L27-L31'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L29-L31'>
                                     <span>src/api/User.js</span>
                                 </a>
 
@@ -333,7 +970,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L37-L41'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L37-L39'>
                                     <span>src/api/User.js</span>
                                 </a>
 
@@ -375,7 +1012,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L47-L51'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L45-L47'>
                                     <span>src/api/User.js</span>
                                 </a>
 
@@ -417,7 +1054,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L57-L61'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L53-L55'>
                                     <span>src/api/User.js</span>
                                 </a>
 
@@ -459,7 +1096,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L67-L71'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L61-L65'>
                                     <span>src/api/User.js</span>
                                 </a>
 
@@ -501,7 +1138,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L77-L81'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L71-L73'>
                                     <span>src/api/User.js</span>
                                 </a>
 
@@ -543,7 +1180,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L87-L92'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L79-L83'>
                                     <span>src/api/User.js</span>
                                 </a>
 
@@ -585,7 +1222,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L98-L102'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L89-L91'>
                                     <span>src/api/User.js</span>
                                 </a>
 
@@ -627,7 +1264,7 @@
 
 
                                 <a class='fr fill-darken0 round round pad1x quiet h5'
-                                   href='https://github.com/Jacxk/discord-http.js/blob/f097610045898caff274599e2213704471c99048/src/api/User.js#L108-L112'>
+                                   href='https://github.com/Jacxk/discord-http.js/blob/6e86ccd7594dc4961364b2d7272c6e276dec9c88/src/api/User.js#L97-L99'>
                                     <span>src/api/User.js</span>
                                 </a>
 

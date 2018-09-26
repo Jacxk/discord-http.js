@@ -6,7 +6,6 @@ const Request = require('../Request.js');
 class User {
 
     constructor(id) {
-        this._Request = new Request();
         this._path = '/users/' + id;
     }
 
@@ -16,7 +15,10 @@ class User {
      */
     getObject() {
         return new Promise(resolve => {
-            this._Request.call('get', this._path).then(response => resolve(response))
+            Request.call('get', this._path).then(response => resolve(response)).catch(err => {
+                let error = `GET -- ${err.status} - ${err.response.text}`;
+                console.error(error);
+            })
         });
     }
 
@@ -25,9 +27,7 @@ class User {
      * @returns {Promise<boolean>}
      */
     isBot() {
-        return new Promise(resolve => {
-            this._Request.call('get', this._path).then(response => resolve(response.bot))
-        });
+        return new Promise(resolve => this.getObject().then(response => resolve(response.bot)));
     }
 
     /**
@@ -35,9 +35,7 @@ class User {
      * @returns {Promise<string>}
      */
     getId() {
-        return new Promise(resolve => {
-            this._Request.call('get', this._path).then(response => resolve(response.id))
-        });
+        return new Promise(resolve => this.getObject().then(response => resolve(response.id)));
     }
 
     /**
@@ -45,9 +43,7 @@ class User {
      * @returns {Promise<string>}
      */
     getUsername() {
-        return new Promise(resolve => {
-            this._Request.call('get', this._path).then(response => resolve(response.username))
-        });
+        return new Promise(resolve => this.getObject().then(response => resolve(response.username)));
     }
 
     /**
@@ -55,9 +51,7 @@ class User {
      * @returns {Promise<string>}
      */
     getDiscriminator() {
-        return new Promise(resolve => {
-            this._Request.call('get', this._path).then(response => resolve(response.discriminator))
-        });
+        return new Promise(resolve => this.getObject().then(response => resolve(response.discriminator)));
     }
 
     /**
@@ -65,9 +59,9 @@ class User {
      * @returns {Promise<string>}
      */
     getTag() {
-        return new Promise(resolve => {
-            this._Request.call('get', this._path).then(response => resolve(response.username + '#' + response.discriminator))
-        });
+        return new Promise(resolve => this.getObject().then(response =>
+            resolve(response.username + '#' + response.discriminator)
+        ));
     }
 
     /**
@@ -75,9 +69,7 @@ class User {
      * @returns {Promise<string>}
      */
     getAvatarHash() {
-        return new Promise(resolve => {
-            this._Request.call('get', this._path).then(response => resolve(response.avatar))
-        });
+        return new Promise(resolve => this.getObject().then(response => resolve(response.avatar)));
     }
 
     /**
@@ -85,10 +77,9 @@ class User {
      * @returns {Promise<string>}
      */
     getAvatarUrl() {
-        return new Promise(resolve => {
-            this._Request.call('get', this._path).then(response =>
-                resolve(`https://cdn.discordapp.com/avatars/${response.id}/${response.avatar}.png`))
-        });
+        return new Promise(resolve => this.getObject().then(response =>
+            resolve(!response.avatar ? null : `https://cdn.discordapp.com/avatars/${response.id}/${response.avatar}.png`)
+        ));
     }
 
     /**
@@ -96,9 +87,7 @@ class User {
      * @returns {Promise<boolean>}
      */
     isVerified() {
-        return new Promise(resolve => {
-            this._Request.call('get', this._path).then(response => resolve(response.verified))
-        });
+        return new Promise(resolve => this.getObject().then(response => resolve(response.verified)));
     }
 
     /**
@@ -106,9 +95,7 @@ class User {
      * @returns {Promise<string>}
      */
     getEmail() {
-        return new Promise(resolve => {
-            this._Request.call('get', this._path).then(response => resolve(response.email))
-        });
+        return new Promise(resolve => this.getObject().then(response => resolve(response.email)));
     }
 }
 
