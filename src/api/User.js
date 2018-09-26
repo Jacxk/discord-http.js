@@ -1,5 +1,8 @@
 const Request = require('../Request.js');
 
+/**
+ * @name User
+ */
 class User {
 
     constructor(id) {
@@ -8,16 +11,18 @@ class User {
     }
 
     /**
-     * @return {Promise<any>}
+     * Get all the user data in one object.
+     * @returns {Promise<object>}
      */
-    getJsonObject() {
+    getObject() {
         return new Promise(resolve => {
             this._Request.call('get', this._path).then(response => resolve(response))
         });
     }
 
     /**
-     * @return {Promise<any>}
+     * Check if the user is a bot.
+     * @returns {Promise<boolean>}
      */
     isBot() {
         return new Promise(resolve => {
@@ -26,7 +31,8 @@ class User {
     }
 
     /**
-     * @return {Promise<any>}
+     * Get the ID of the user.
+     * @returns {Promise<string>}
      */
     getId() {
         return new Promise(resolve => {
@@ -35,7 +41,8 @@ class User {
     }
 
     /**
-     * @return {Promise<any>}
+     * Get the user's Username. (my_name)
+     * @returns {Promise<string>}
      */
     getUsername() {
         return new Promise(resolve => {
@@ -44,7 +51,8 @@ class User {
     }
 
     /**
-     * @return {Promise<any>}
+     * Get the user's discriminator. (1234)
+     * @returns {Promise<string>}
      */
     getDiscriminator() {
         return new Promise(resolve => {
@@ -53,7 +61,8 @@ class User {
     }
 
     /**
-     * @return {Promise<any>}
+     * Get the user's tag. (my_name#1234)
+     * @returns {Promise<string>}
      */
     getTag() {
         return new Promise(resolve => {
@@ -62,7 +71,8 @@ class User {
     }
 
     /**
-     * @return {Promise<any>}
+     * Get the user's avatar hash.
+     * @returns {Promise<string>}
      */
     getAvatarHash() {
         return new Promise(resolve => {
@@ -71,7 +81,8 @@ class User {
     }
 
     /**
-     * @return {Promise<any>}
+     * Get the user's avatar in url form.
+     * @returns {Promise<string>}
      */
     getAvatarUrl() {
         return new Promise(resolve => {
@@ -81,7 +92,8 @@ class User {
     }
 
     /**
-     * @return {Promise<any>}
+     * Check if the user is verified.
+     * @returns {Promise<boolean>}
      */
     isVerified() {
         return new Promise(resolve => {
@@ -90,7 +102,8 @@ class User {
     }
 
     /**
-     * @return {Promise<any>}
+     * Get the user's email.
+     * @returns {Promise<string>}
      */
     getEmail() {
         return new Promise(resolve => {

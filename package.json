@@ -4,7 +4,8 @@
   "description": "A discord http library with no websockets.",
   "main": "src/index.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "node test/test.js",
+    "docs:build": "documentation build src/** -f html -o docs --github true"
   },
   "author": "Jacxk",
   "license": "ISC",
