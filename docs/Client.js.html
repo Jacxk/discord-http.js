@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Home - Documentation
+      Client.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -48,14 +50,14 @@
 
   <div class="top-nav-wrapper">
     <ul>
-      <li  class="active" >
+      <li >
         <a href="index.html">
           
-          
-            <svg fill="#0095dd" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
+          
           
         </a>
       </li>
@@ -75,42 +77,51 @@
 
   <div id="main">
     
+      <h1 class="page-title">
+        Client.js
+      </h1>
+    
 
     
       
 
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>const User = require('./User.js');
+const Guild = require('./Guild.js');
 
+class Client {
 
-    
+    /**
+     * @constructor
+     * @param token {string} The bot's token.
+     */
+    constructor(token) {
+        process.env.DiscordHttpsJsToken = token;
+        this._User = new User('@me');
+    }
 
-      
+    /**
+     * Get the user object
+     * @returns User
+     */
+    getUser() {
+        return this._User;
+    }
 
-
-  <section class="readme">
-    <article>
-      <h1>Discord-HTTP.JS</h1><p><a href="https://nodei.co/npm/discord-http.js/"><img src="https://nodei.co/npm/discord-http.js.png" alt="NPM"></a></p>
-<p><strong>discord-http.js</strong> is a discord wrapper library will help you get data from your discord bot without getting it online. 
-It does not use websockets which means that this library is limited. Use <a href="https://discord.js.org">discord.js</a> 
-to get full access to the discord api.</p>
-<h2>Installation</h2><p><code>npm i discord-http.js --save</code></p>
-<h2>Get Started</h2><p>You just need to require this module and create an async function to await for the response, just like this:</p>
-<pre class="prettyprint source lang-javascript"><code>const DiscordHttp = require('discord-http.js');
-const client = new DiscordHttp.Client('Token Here');
-
-async function getBotInfo() {
-    const user = client.getUser();
-
-    const username = await user.getUsername();
-
-    console.log(&quot;Username: %s&quot;, username)
+    /**
+     * Get a specific guild from the client
+     * @returns Guild
+     * @param id {string} ID of the guild you want to get.
+     */
+    getGuild(id) {
+        return new Guild(id);
+    }
 }
 
-getBotInfo().catch(console.error);</code></pre><p><a href="https://github.com/Jacxk/discord-http.js/blob/master/test/test.js">Example Code</a></p>
-<p><a href="https://jacxk.github.io/discord-http.js/">Documentation</a></p>
-<p><em>This is still work in progress. More to come.</em></p>
-    </article>
-  </section>
-
+module.exports = Client;</code></pre>
+  </article>
+</section>
 
     
 

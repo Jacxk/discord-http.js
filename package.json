@@ -1,11 +1,12 @@
 {
   "name": "discord-http.js",
   "version": "0.1.0",
-  "description": "A discord http library with no websockets.",
+  "description": "A discord http wrapper library.",
   "main": "src/index.js",
   "scripts": {
     "test": "node test/test.js",
-    "docs:build": "documentation build src/** -f html -o docs --github true"
+    "docs:build": "documentation build src/** -f html -o docs --theme node_modules/clean-documentation-theme",
+    "jsdoc": "./node_modules/.bin/jsdoc ./src/ --readme ./README.md"
   },
   "author": "Jacxk",
   "license": "ISC",
@@ -15,7 +16,9 @@
   "directories": {
     "test": "test"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jsdoc": "^3.5.5"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jacxk/discord-http.js.git"

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Home - Documentation
+      User.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -48,14 +50,14 @@
 
   <div class="top-nav-wrapper">
     <ul>
-      <li  class="active" >
+      <li >
         <a href="index.html">
           
-          
-            <svg fill="#0095dd" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
+          
           
         </a>
       </li>
@@ -75,42 +77,122 @@
 
   <div id="main">
     
+      <h1 class="page-title">
+        User.js
+      </h1>
+    
 
     
       
 
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>const Request = require('../Request.js');
 
+class User {
 
-    
+    /**
+     * @constructor
+     * @param id {string} The ID of the User to get the data from.
+     */
+    constructor(id) {
+        this._path = '/users/' + id;
+    }
 
-      
+    /**
+     * Get all the user data in one object.
+     * @returns {Promise&lt;object>}
+     */
+    getObject() {
+        return new Promise(resolve => {
+            Request.call('get', this._path).then(response => resolve(response)).catch(err => {
+                let error = `GET -- ${err.status} - ${err.response.text}`;
+                console.error(error);
+            })
+        });
+    }
 
+    /**
+     * Check if the user is a bot.
+     * @returns {Promise&lt;boolean>}
+     */
+    isBot() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.bot)));
+    }
 
-  <section class="readme">
-    <article>
-      <h1>Discord-HTTP.JS</h1><p><a href="https://nodei.co/npm/discord-http.js/"><img src="https://nodei.co/npm/discord-http.js.png" alt="NPM"></a></p>
-<p><strong>discord-http.js</strong> is a discord wrapper library will help you get data from your discord bot without getting it online. 
-It does not use websockets which means that this library is limited. Use <a href="https://discord.js.org">discord.js</a> 
-to get full access to the discord api.</p>
-<h2>Installation</h2><p><code>npm i discord-http.js --save</code></p>
-<h2>Get Started</h2><p>You just need to require this module and create an async function to await for the response, just like this:</p>
-<pre class="prettyprint source lang-javascript"><code>const DiscordHttp = require('discord-http.js');
-const client = new DiscordHttp.Client('Token Here');
+    /**
+     * Get the ID of the user.
+     * @returns {Promise&lt;string>}
+     */
+    getId() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.id)));
+    }
 
-async function getBotInfo() {
-    const user = client.getUser();
+    /**
+     * Get the user's Username. (my_name)
+     * @returns {Promise&lt;string>}
+     */
+    getUsername() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.username)));
+    }
 
-    const username = await user.getUsername();
+    /**
+     * Get the user's discriminator. (1234)
+     * @returns {Promise&lt;string>}
+     */
+    getDiscriminator() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.discriminator)));
+    }
 
-    console.log(&quot;Username: %s&quot;, username)
+    /**
+     * Get the user's tag. (my_name#1234)
+     * @returns {Promise&lt;string>}
+     */
+    getTag() {
+        return new Promise(resolve => this.getObject().then(response =>
+            resolve(response.username + '#' + response.discriminator)
+        ));
+    }
+
+    /**
+     * Get the user's avatar hash.
+     * @returns {Promise&lt;string>}
+     */
+    getAvatarHash() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.avatar)));
+    }
+
+    /**
+     * Get the user's avatar in url form.
+     * @returns {Promise&lt;string>}
+     */
+    getAvatarUrl() {
+        return new Promise(resolve => this.getObject().then(response =>
+            resolve(!response.avatar ? null : `https://cdn.discordapp.com/avatars/${response.id}/${response.avatar}.png`)
+        ));
+    }
+
+    /**
+     * Check if the user is verified.
+     * @returns {Promise&lt;boolean>}
+     */
+    isVerified() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.verified)));
+    }
+
+    /**
+     * Get the user's email.
+     * @returns {Promise&lt;string>}
+     */
+    getEmail() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.email)));
+    }
 }
 
-getBotInfo().catch(console.error);</code></pre><p><a href="https://github.com/Jacxk/discord-http.js/blob/master/test/test.js">Example Code</a></p>
-<p><a href="https://jacxk.github.io/discord-http.js/">Documentation</a></p>
-<p><em>This is still work in progress. More to come.</em></p>
-    </article>
-  </section>
-
+module.exports = User;
+</code></pre>
+  </article>
+</section>
 
     
 

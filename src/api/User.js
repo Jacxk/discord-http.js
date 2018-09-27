@@ -1,10 +1,11 @@
 const Request = require('../Request.js');
 
-/**
- * @name User
- */
 class User {
 
+    /**
+     * @constructor
+     * @param id {string} The ID of the User to get the data from.
+     */
     constructor(id) {
         this._path = '/users/' + id;
     }

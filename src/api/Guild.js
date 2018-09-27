@@ -1,17 +1,18 @@
 const Request = require('../Request.js');
 const User = require('./User.js');
 
-/**
- * @name Guild
- */
 class Guild {
+    /**
+     * @constructor
+     * @param id {string} The ID of a Guild which the bot is in.
+     */
     constructor(id) {
         this._path = '/guilds/' + id;
     }
 
     /**
      * Get all the guild data in one object.
-     * @return {Promise<object>}
+     * @returns {Promise<object>}
      */
     getObject() {
         return new Promise(resolve => {

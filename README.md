@@ -31,6 +31,6 @@ getBotInfo().catch(console.error);
 
 [Example Code](https://github.com/Jacxk/discord-http.js/blob/master/test/test.js)
 
-I'll get the docs hosted on a website as soon as possible
+[Documentation](https://jacxk.github.io/discord-http.js/)
 
 *This is still work in progress. More to come.*

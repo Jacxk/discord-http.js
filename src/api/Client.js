@@ -1,11 +1,12 @@
 const User = require('./User.js');
 const Guild = require('./Guild.js');
 
-/**
- * @name Client
- */
 class Client {
 
+    /**
+     * @constructor
+     * @param token {string} The bot's token.
+     */
     constructor(token) {
         process.env.DiscordHttpsJsToken = token;
         this._User = new User('@me');
@@ -22,6 +23,7 @@ class Client {
     /**
      * Get a specific guild from the client
      * @returns Guild
+     * @param id {string} ID of the guild you want to get.
      */
     getGuild(id) {
         return new Guild(id);
