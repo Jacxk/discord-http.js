@@ -23,10 +23,10 @@ class Client {
     /**
      * Get a specific guild from the client
      * @returns Guild
-     * @param id {string} ID of the guild you want to get.
+     * @param guildId {string} ID of the guild you want to get.
      */
-    getGuild(id) {
-        return new Guild(id);
+    getGuild(guildId) {
+        return new Guild(guildId);
     }
 }
 

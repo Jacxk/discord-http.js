@@ -17,6 +17,7 @@ class Guild {
     getObject() {
         return new Promise(resolve => {
             Request.call('get', this._path).then(response => resolve(response)).catch(err => {
+                if (!err.response) return console.error(err);
                 let error = `GET -- ${err.status} - ${err.response.text}`;
                 console.error(error);
             })
@@ -29,6 +30,137 @@ class Guild {
      */
     getId() {
         return new Promise(resolve => this.getObject().then(response => resolve(response.id)));
+    }
+
+    /**
+     * Get a list of channels from the guild.
+     * @returns {Promise<object|Channel>}
+     * @param toObject {boolean} Send the data as a JSON Object instead of a list of classes
+     */
+    getChannels(toObject = false) {
+        this._path += '/channels';
+        return new Promise(resolve => this.getObject().then(response => resolve(response)));
+    }
+
+    /**
+     * Creates a channel on the guild.
+     * @see {@link https://discordapp.com/developers/docs/resources/guild#create-guild-channel}
+     * @returns {Promise<Channel | object>}
+     * @param name {string} Name of the channel to be created, either 'text', 'voice', 'category'.
+     * @param [type=text] {string} Type of the channel to be created
+     * @param [options] {object} topic?: string, bitrate?: integer, user_limit?: integer,
+     * permission_overwrites?: [overwrites]{@link https://discordapp.com/developers/docs/resources/channel#overwrite-object}>,
+     * parent_id?: snowflake, nsfw?: boolean
+     * @param [toObject] {boolean} Send the data as a JSON Object instead of a class.
+     */
+    createChannel(name, type = 'text', options = {}, toObject = false) {
+        this._path += '/channels';
+        return new Promise(resolve => {
+            const option = Object.assign({name, type}, options);
+            Request.call('post', this._path, option).then(response => {
+                if (toObject) resolve(response);
+                else resolve(response);
+            }).catch(err => {
+                if (!err.response) return console.error(err);
+                let error = `POST -- ${err.status} - ${err.response.text}`;
+                console.error(error);
+            })
+        });
+    }
+
+    /**
+     * Get a member from the current guild.
+     * @param memberId {string} The ID of the member to get.
+     * @param [toObject] {boolean} Send the data as a JSON Object instead of a class.
+     * @returns {Promise<object|GuildMember>}
+     */
+    getGuildMember(memberId, toObject = false) {
+        this._path += '/members/' + memberId;
+        return new Promise(resolve => this.getObject().then(response => {
+            if (toObject) resolve(response);
+            else resolve(response);
+        }));
+    }
+
+    /**
+     * Get a list of members from the current guild.
+     * @see {@link https://discordapp.com/developers/docs/resources/guild#list-guild-members}
+     * @param [toObject] {boolean} Send the data as a JSON Object instead of a class.
+     * @param [limit] {number} Max number of members to return (1-1000).
+     * @param [after] {string} The highest user id in the previous page.
+     * @returns {Promise<object|Array<GuildMember>>}
+     */
+    getGuildMembers(toObject = false, limit = 1, after = "0") {
+        this._path += '/members';
+        return new Promise(resolve => this.getObject().then(response => {
+            if (toObject) resolve(response);
+            else resolve(response);
+        }));
+    }
+
+    /**
+     * Get a list of users banned from the current guild.
+     * @param [toObject] {boolean} Send the data as a JSON Object instead of a class.
+     * @returns {Promise<object|Array<User>>}
+     */
+    getBans(toObject = false) {
+        this._path += '/bans';
+        return new Promise(resolve => this.getObject().then(response => {
+            if (toObject) resolve(response);
+            else {
+                let users = [];
+                for (let i = 0; i < response.length; i++) users.push({
+                    reason: response.reason,
+                    user: new User(response[i].user.id)
+                })
+                resolve(users);
+            }
+        }));
+    }
+
+    /**
+     * Get a user banned from the current guild.
+     * @param userId ID of the user banned.
+     * @param [toObject] {boolean} Send the data as a JSON Object instead of a class.
+     * @returns {Promise<object|User>}
+     */
+    getBan(userId, toObject = false) {
+        this._path += '/bans/' + userId;
+        return new Promise(resolve => this.getObject().then(response => {
+            if (toObject) resolve(response);
+            else resolve({
+                reason: response.reason,
+                user: new User(response.user.id)
+            });
+        }));
+    }
+
+    /**
+     * Get the prune count from the current guild.
+     * @returns {Promise<number>}
+     */
+    getPruneCount() {
+        this._path += '/prune';
+        return new Promise(resolve => this.getObject().then(response => resolve(response)));
+    }
+
+    /**
+     * Get a list of invite objects from the current guild.
+     * @returns {Promise<object>}
+     */
+    getInvites() {
+        this._path += '/invites';
+        return new Promise(resolve => this.getObject().then(response => resolve(response)));
+    }
+
+
+    /**
+     * Get a list of integration objects from the current guild.
+     * @returns {Promise<object>}
+     */
+    getIntegrations() {
+        this._path += '/integrations';
+        return new Promise(resolve => this.getObject().then(response => resolve(response)));
     }
 
     /**
