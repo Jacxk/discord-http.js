@@ -46,12 +46,16 @@ class Guild {
      * Creates a channel on the guild.
      * @see {@link https://discordapp.com/developers/docs/resources/guild#create-guild-channel}
      * @returns {Promise<Channel | object>}
-     * @param name {string} Name of the channel to be created, either 'text', 'voice', 'category'.
-     * @param [type=text] {string} Type of the channel to be created
+     * @param name {string} Name of the channel to be created.
+     * @param [type=text] {string} Type of the channel to be created, either 'text', 'voice', 'category'.
      * @param [options] {object} topic?: string, bitrate?: integer, user_limit?: integer,
      * permission_overwrites?: [overwrites]{@link https://discordapp.com/developers/docs/resources/channel#overwrite-object}>,
      * parent_id?: snowflake, nsfw?: boolean
      * @param [toObject] {boolean} Send the data as a JSON Object instead of a class.
+     * @example
+     *  guild.createChannel('SomeName', 'voice', {parent_id: '1234567890'}).then(channel => {
+     *      console.log(`New Channel created ${channel.name}`);
+     *  }
      */
     createChannel(name, type = 'text', options = {}, toObject = false) {
         this._path += '/channels';

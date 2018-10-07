@@ -8,7 +8,7 @@ class Request {
             .set('User-Agent', 'DiscordBot (discord-https.js, v0.0.1)')
             .set('Content-Type', 'application/json')
             .set('Authorization', 'Bot ' + process.env.DiscordHttpsJsToken)
-            .send(data).http2();
+            .send(data);
 
         return body;
     }
