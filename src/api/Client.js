@@ -36,7 +36,7 @@ class Client {
      * @param [limit=100] {number} Max number of guilds to return (1-100).
      * @param [before] {string} Get guilds before this guild ID.
      * @param [after] {string} Get guilds after this guild ID.
-     * @returns Promise<Guild|object>
+     * @returns Promise<Array<Guild>|object>
      * @example
      *  async function getGuilds() {
      *      const guilds = await client.getGuilds(true, {limit: 10, after: "1234567890"});
@@ -60,6 +60,35 @@ class Client {
                 console.error(error);
             })
         });
+    }
+
+    /**
+     * Make the Client leave the specified guild.
+     * @param guildId {string}
+     */
+    leaveGuild(guildId) {
+        Request.call('DELETE', '/users/@me/guilds/' + guildId).catch(err => {
+            if (!err.response) return console.error(err);
+            let error = `DELETE -- ${err.status} - ${err.response.text}`;
+            console.error(error);
+        })
+    }
+
+    /**
+     * Change the username of the client.
+     * @param username {string}
+     * @return {Promise<User>}
+     */
+    setUsername(username) {
+        return new Promise(resolve => {
+            Request.call('PATCH', '/users/@me', {username}).then(response => {
+                resolve(new User(response.id));
+            }).catch(err => {
+                if (!err.response) return console.error(err);
+                let error = `GET -- ${err.status} - ${err.response.text}`;
+                console.error(error);
+            })
+        })
     }
 }
 

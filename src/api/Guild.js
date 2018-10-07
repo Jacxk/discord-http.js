@@ -1,5 +1,6 @@
 const Request = require('../Request.js');
 const User = require('./User.js');
+const Channel = require('./Channel.js');
 
 class Guild {
     /**
@@ -34,12 +35,19 @@ class Guild {
 
     /**
      * Get a list of channels from the guild.
-     * @returns {Promise<object|Channel>}
-     * @param toObject {boolean} Send the data as a JSON Object instead of a list of classes
+     * @returns {Promise<Array<Channel>|object>}
+     * @param [toObject] {boolean} Send the data as a JSON Object instead of a list of classes
      */
     getChannels(toObject = false) {
         this._path += '/channels';
-        return new Promise(resolve => this.getObject().then(response => resolve(response)));
+        return new Promise(async resolve => this.getObject().then(async response => {
+            if (toObject) return resolve(response);
+            const channels = [];
+            for (let i = 0; i < response.length; i++) {
+                await channels.push(new Channel(response[i].id));
+            }
+            resolve(channels);
+        }));
     }
 
     /**
