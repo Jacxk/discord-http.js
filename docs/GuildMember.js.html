@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Client.js - Documentation
+      GuildMember.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -78,7 +78,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        Client.js
+        GuildMember.js
       </h1>
     
 
@@ -87,62 +87,100 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>const User = require('./User.js');
-const Guild = require('./Guild.js');
-const Request = require('../Request.js');
+    <pre class="prettyprint source linenums"><code>const Request = require('../Request.js');
+const User = require('./User.js');
 
-class Client {
+class GuildMember {
 
     /**
      * @constructor
-     * @param token {string} The bot's token.
+     * @param guildId {string} The ID of the Guild the User is in.
+     * @param userId {string} The ID of the User to get the data from.
      */
-    constructor(token) {
-        process.env.DiscordHttpJsToken = token;
-        this._User = new User('@me');
+    constructor(guildId, userId) {
+        this._guildId = guildId;
+        this._userId = userId;
+        this._path = `/guilds/${guildId}/members/${userId}`;
     }
 
     /**
-     * Get the user object
-     * @returns User
+     * Get all the guild member data in one object.
+     * @returns {Promise&lt;object>}
+     */
+    getObject() {
+        return new Promise(resolve => {
+            Request.call('get', this._path).then(response => resolve(response)).catch(err => {
+                let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
+                console.error(error);
+            })
+        });
+    }
+
+    /**
+     * Get the guild member as a user.
+     * @returns {Promise&lt;boolean>}
      */
     getUser() {
-        return this._User;
+        return new Promise(resolve => this.getObject().then(response => resolve(new User(response.user.id))));
     }
 
     /**
-     * Get a specific guild from the client
-     * @returns Guild
-     * @param guildId {string} ID of the guild you want to get.
-     */
-    getGuild(guildId) {
-        return new Guild(guildId);
-    }
-
-    /**
-     * @see {@link https://discordapp.com/developers/docs/resources/user#get-current-user-guilds}
+     * Get the guild member's roles
      * @param [toObject] {boolean} Send the data as a JSON Object instead of a class.
-     * @param [limit=100] {number} Max number of guilds to return (1-100).
-     * @param [before] {string} Get guilds before this guild ID.
-     * @param [after] {string} Get guilds after this guild ID.
-     * @returns Promise&lt;Array&lt;Guild>|object>
-     * @example
-     *  async function getGuilds() {
-     *      const guilds = await client.getGuilds(true, {limit: 10, after: "1234567890"});
-     *      console.log(guilds);
-     *  }
+     * @returns {Promise&lt;string>}
      */
-    getGuilds(toObject = false, {limit = 1, before = 0, after = 0} = {}) {
+    getRoles(toObject = false) {
+        return new Promise(resolve => this.getObject().then(response => {
+            if (toObject) resolve(response.roles);
+            else resolve(response.roles);
+        }));
+    }
+
+    /**
+     * Get the date the user joined the guild.
+     * @return {Promise&lt;Date>}
+     */
+    getJoinedDate() {
+        return new Promise(resolve => this.getObject().then(response => resolve(new Date(response.joined_at))));
+    }
+
+    /**
+     * Get the nickname of the user if it has one.
+     * @return {Promise&lt;String>}
+     */
+    getNickName() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.nick)));
+    }
+
+    /**
+     * Whether the guild member is muted (Voice).
+     * @return {Promise&lt;Boolean>}
+     */
+    isMuted() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.mute)));
+    }
+
+    /**
+     * Whether the guild member is muted (Voice).
+     * @return {Promise&lt;Boolean>}
+     */
+    isDeafen() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.mute)));
+    }
+
+    /**
+     * Modify attributes of the guild member.
+     * @param nick {String} Nickname to set to the guild member.
+     * @param roles {Array&lt;String>} Roles to add to the guild member.
+     * @param mute {Boolean} Mute the guild member (Voice).
+     * @param deaf {Boolean} Deafen the guild member (Voice).
+     * @param channel_id {String} Id of channel to move user to (if they are connected to voice).
+     * @return {Promise&lt;GuildMember>}
+     */
+    modify({nick, roles, mute, deaf, channel_id}) {
         return new Promise(resolve => {
-            Request.call('get', '/users/@me/guilds', null, {limit, before, after}).then(async response => {
-                if (toObject) return resolve(response);
-                const guilds = [];
-
-                for (let i = 0; i &lt; response.length; i++) {
-                    await guilds.push(new Guild(response[i].id));
-                }
-
-                resolve(guilds);
+            Request.call('PATCH', this._path + '/members', {nick, roles, mute, deaf, channel_id}).then(() => {
+                resolve(this);
             }).catch(err => {
                 let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
                 console.error(error);
@@ -151,34 +189,65 @@ class Client {
     }
 
     /**
-     * Make the Client leave the specified guild.
-     * @param guildId {string}
+     * Add a role to the guild member.
+     * @param roleID {String} ID of the role to add.
+     * @return {Promise&lt;GuildMember>}
      */
-    leaveGuild(guildId) {
-        Request.call('DELETE', '/users/@me/guilds/' + guildId).catch(err => {
+    addRole(roleID) {
+        return new Promise(resolve => {
+            Request.call('put', this._path + '/roles/' + roleID).then(() => {
+                resolve(this);
+            }).catch(err => {
+                let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
+                console.error(error);
+            })
+        });
+    }
+
+    /**
+     * Remove a role from the guild member.
+     * @param roleID {String} ID of the role to add.
+     * @return {Promise&lt;GuildMember>}
+     */
+    removeRole(roleID) {
+        return new Promise(resolve => {
+            Request.call('DELETE', this._path + '/roles/' + roleID).then(() => {
+                resolve(this);
+            }).catch(err => {
+                let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
+                console.error(error);
+            })
+        });
+    }
+
+    /**
+     * Kicks the member from the guild.
+     */
+    kickMember() {
+        Request.call('DELETE', this._path).catch(err => {
             let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
             console.error(error);
         })
     }
 
     /**
-     * Change the username of the client.
-     * @param username {string}
-     * @return {Promise&lt;User>}
+     * Bans the member from the guild.
+     * @param reason {String} Reason why this user is getting banned.
+     * @param deleteMessages {number} Number of days to delete messages for (0-7)
      */
-    setUsername(username) {
-        return new Promise(resolve => {
-            Request.call('PATCH', '/users/@me', {username}).then(response => {
-                resolve(new User(response.id));
-            }).catch(err => {
-                let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
-                console.error(error);
-            })
+    banMember(reason, deleteMessages = 0) {
+        Request.call('PUT', `/guilds/${this._guildId}/bans/${this._userId}`, null, {
+            ['delete-message-days']: deleteMessages,
+            reason
+        }).catch(err => {
+            let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
+            console.error(error);
         })
     }
 }
 
-module.exports = Client;</code></pre>
+module.exports = GuildMember;
+</code></pre>
   </article>
 </section>
 

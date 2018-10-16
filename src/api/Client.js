@@ -9,7 +9,7 @@ class Client {
      * @param token {string} The bot's token.
      */
     constructor(token) {
-        process.env.DiscordHttpsJsToken = token;
+        process.env.DiscordHttpJsToken = token;
         this._User = new User('@me');
     }
 
@@ -43,9 +43,9 @@ class Client {
      *      console.log(guilds);
      *  }
      */
-    getGuilds(toObject = false, {limit, before, after}) {
+    getGuilds(toObject = false, {limit = 1, before = 0, after = 0} = {}) {
         return new Promise(resolve => {
-            Request.call('get', '/users/@me/guilds').then(async response => {
+            Request.call('get', '/users/@me/guilds', null, {limit, before, after}).then(async response => {
                 if (toObject) return resolve(response);
                 const guilds = [];
 
@@ -55,8 +55,7 @@ class Client {
 
                 resolve(guilds);
             }).catch(err => {
-                if (!err.response) return console.error(err);
-                let error = `GET -- ${err.status} - ${err.response.text}`;
+                let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
                 console.error(error);
             })
         });
@@ -68,8 +67,7 @@ class Client {
      */
     leaveGuild(guildId) {
         Request.call('DELETE', '/users/@me/guilds/' + guildId).catch(err => {
-            if (!err.response) return console.error(err);
-            let error = `DELETE -- ${err.status} - ${err.response.text}`;
+            let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
             console.error(error);
         })
     }
@@ -84,8 +82,7 @@ class Client {
             Request.call('PATCH', '/users/@me', {username}).then(response => {
                 resolve(new User(response.id));
             }).catch(err => {
-                if (!err.response) return console.error(err);
-                let error = `GET -- ${err.status} - ${err.response.text}`;
+                let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
                 console.error(error);
             })
         })

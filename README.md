@@ -1,6 +1,10 @@
 # Discord-HTTP.JS
 
-[![NPM](https://nodei.co/npm/discord-http.js.png)](https://nodei.co/npm/discord-http.js/)
+[![npm version](https://badge.fury.io/js/discord-http.js.png)](https://www.npmjs.com/package/discord-http.js)
+[![discord](https://img.shields.io/badge/discord-join%20now-blue.svg)](https://discord.gg/GfE6KnF)
+
+
+[![NPM](https://nodei.co/npm/discord-http.js.png)](https://www.npmjs.com/package/discord-http.js)
 
 **discord-http.js** is a discord wrapper library will help you get data from your discord bot without getting it online. 
 It does not use websockets which means that this library is limited. Use [discord.js](https://discord.js.org) 

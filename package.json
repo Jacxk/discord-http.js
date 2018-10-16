@@ -1,6 +1,6 @@
 {
   "name": "discord-http.js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A discord http wrapper library.",
   "main": "src/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "Jacxk",
   "license": "ISC",
   "dependencies": {
-    "superagent": "^4.0.0-beta.5"
+    "got": "^9.2.2"
   },
   "directories": {
     "test": "test"

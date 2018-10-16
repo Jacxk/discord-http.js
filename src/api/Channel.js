@@ -8,7 +8,9 @@ class Channel {
      * @param id {string} The ID of a Channel to get.
      */
     constructor(id) {
-        this._path = '/channels/' + id;
+        this._channelId = id;
+        this._path_ = '';
+        this._path = '/channels/' + id + this._path_;
     }
 
     /**
@@ -18,11 +20,24 @@ class Channel {
     getObject() {
         return new Promise(resolve => {
             Request.call('get', this._path).then(response => resolve(response)).catch(err => {
-                if (!err.response) return console.error(err);
-                let error = `GET -- ${err.status} - ${err.response.text}`;
+                let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
                 console.error(error);
-            })
+            });
+            this._path_ = '';
         });
+    }
+
+    /**
+     * Change the position of the channel.
+     * @param position {Number} The new position of the channel.
+     * @return {Channel}
+     */
+    setPosition(position) {
+        Request.call('get', this._path, {id: this._channelId, position}).catch(err => {
+            let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
+            console.error(error);
+        });
+        return this;
     }
 
     /**
@@ -32,7 +47,7 @@ class Channel {
      * @return {Promise<Message|object>}
      */
     getMessage(messageId, toObject = false) {
-        this._path += '/messages/' + messageId;
+        this._path_ = '/messages/' + messageId;
         return new Promise(async resolve => this.getObject().then(async response => {
             if (toObject) return resolve(response);
             resolve(new Message(response.id, messageId));
@@ -48,9 +63,9 @@ class Channel {
      * @param [around] {string} Get messages around this message ID.
      * @return {Promise<Array<Message>|object>}
      */
-    getMessages(toObject = false, {limit, around, before, after}) {
+    getMessages(toObject = false, {limit = 1, around, before, after} = {}) {
         return new Promise(resolve => {
-            Request.call('get', this._path + '/messages').then(async response => {
+            Request.call('get', this._path + '/messages', null, {limit, around, before, after}).then(async response => {
                 if (toObject) return resolve(response);
                 const messages = [];
                 for (let i = 0; i < response.length; i++) {
@@ -58,8 +73,7 @@ class Channel {
                 }
                 resolve(messages);
             }).catch(err => {
-                if (!err.response) return console.error(err);
-                let error = `GET -- ${err.status} - ${err.response.text}`;
+                let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
                 console.error(error);
             })
         });
@@ -71,7 +85,7 @@ class Channel {
      * @return {Promise<Array<Message>|object>}
      */
     getPinnedMessages(toObject = false) {
-        this._path += '/pins';
+        this._path_ = '/pins';
         return new Promise(async resolve => this.getObject().then(async response => {
             if (toObject) return resolve(response);
             const messages = [];

@@ -20,8 +20,7 @@ class Message {
     getObject() {
         return new Promise(resolve => {
             Request.call('get', this._path).then(response => resolve(response)).catch(err => {
-                if (!err.response) return console.error(err);
-                let error = `GET -- ${err.status} - ${err.response.text}`;
+                let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
                 console.error(error);
             })
         });

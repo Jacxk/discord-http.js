@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Client.js - Documentation
+      Emoji.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -78,7 +78,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        Client.js
+        Emoji.js
       </h1>
     
 
@@ -88,62 +88,25 @@
 <section>
   <article>
     <pre class="prettyprint source linenums"><code>const User = require('./User.js');
-const Guild = require('./Guild.js');
-const Request = require('../Request.js');
+const Role = require('./Role.js');
 
-class Client {
-
+class Emoji {
     /**
      * @constructor
-     * @param token {string} The bot's token.
+     * @param emojiId {String} ID of the emoji to get.
      */
-    constructor(token) {
-        process.env.DiscordHttpJsToken = token;
-        this._User = new User('@me');
+    constructor(guildId, emojiId) {
+        this._guildId = guildId;
+        this._path = `/guild/${guildId}/emojis/${emojiId}`;
     }
 
     /**
-     * Get the user object
-     * @returns User
+     * Get all the message data in one object.
+     * @returns {Promise&lt;object>}
      */
-    getUser() {
-        return this._User;
-    }
-
-    /**
-     * Get a specific guild from the client
-     * @returns Guild
-     * @param guildId {string} ID of the guild you want to get.
-     */
-    getGuild(guildId) {
-        return new Guild(guildId);
-    }
-
-    /**
-     * @see {@link https://discordapp.com/developers/docs/resources/user#get-current-user-guilds}
-     * @param [toObject] {boolean} Send the data as a JSON Object instead of a class.
-     * @param [limit=100] {number} Max number of guilds to return (1-100).
-     * @param [before] {string} Get guilds before this guild ID.
-     * @param [after] {string} Get guilds after this guild ID.
-     * @returns Promise&lt;Array&lt;Guild>|object>
-     * @example
-     *  async function getGuilds() {
-     *      const guilds = await client.getGuilds(true, {limit: 10, after: "1234567890"});
-     *      console.log(guilds);
-     *  }
-     */
-    getGuilds(toObject = false, {limit = 1, before = 0, after = 0} = {}) {
+    getObject() {
         return new Promise(resolve => {
-            Request.call('get', '/users/@me/guilds', null, {limit, before, after}).then(async response => {
-                if (toObject) return resolve(response);
-                const guilds = [];
-
-                for (let i = 0; i &lt; response.length; i++) {
-                    await guilds.push(new Guild(response[i].id));
-                }
-
-                resolve(guilds);
-            }).catch(err => {
+            Request.call('get', this._path).then(response => resolve(response)).catch(err => {
                 let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
                 console.error(error);
             })
@@ -151,34 +114,76 @@ class Client {
     }
 
     /**
-     * Make the Client leave the specified guild.
-     * @param guildId {string}
+     * Get the ID of the current emoji.
+     * @return {Promise&lt;String>}
      */
-    leaveGuild(guildId) {
-        Request.call('DELETE', '/users/@me/guilds/' + guildId).catch(err => {
-            let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
-            console.error(error);
-        })
+    getId() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.id)));
     }
 
     /**
-     * Change the username of the client.
-     * @param username {string}
-     * @return {Promise&lt;User>}
+     * Get the name of the emoji.
+     * @return {Promise&lt;String>}
      */
-    setUsername(username) {
-        return new Promise(resolve => {
-            Request.call('PATCH', '/users/@me', {username}).then(response => {
-                resolve(new User(response.id));
-            }).catch(err => {
-                let error = `${err.method} -- ${err.statusCode} - ${err.statusMessage}`;
-                console.error(error);
-            })
-        })
+    getName() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.name)));
     }
-}
 
-module.exports = Client;</code></pre>
+    /**
+     * Get the roles this emoji is whitelisted to.
+     * @param [toObject] {boolean} Send the data as a JSON Object instead of a class.
+     * @return {Promise&lt;Array&lt;Role>|Object>}
+     */
+    getRoles(toObject = false) {
+        return new Promise(resolve => this.getObject().then(response => {
+            if (toObject) resolve(response.roles);
+            else {
+                let roles = [];
+                for (let i = 0; i &lt; response.length; i++) roles.push({
+                    reason: response.reason,
+                    user: new Role(this._guildId, response[i].user.id)
+                })
+                resolve(roles);
+            }
+        }));
+    }
+
+    /**
+     * Get the user who created the emoji.
+     * @param [toObject] {boolean} Send the data as a JSON Object instead of a class.
+     * @return {Promise&lt;any>}
+     */
+    getUser(toObject = false) {
+        return new Promise(resolve => this.getObject().then(response => {
+            if (toObject) resolve(response.user);
+            else resolve(new User(response.user.id));
+        }));
+    }
+
+    /**
+     * Whether the emoji must be wrapped in colons.
+     * @return {Promise&lt;Boolean>}
+     */
+    requiresColons() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.require_colons)));
+    }
+
+    /**
+     * Whether the emoji is managed.
+     * @return {Promise&lt;Boolean>}
+     */
+    isManaged() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.managed)));
+    }
+
+    /**
+     * Whether the emoji is animated.
+     * @return {Promise&lt;Boolean>}
+     */
+    isAnimated() {
+        return new Promise(resolve => this.getObject().then(response => resolve(response.animated)));
+    }
+}</code></pre>
   </article>
 </section>
 
